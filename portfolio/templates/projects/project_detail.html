@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="container">
+    <div class="row my-5">
+        {% if project %}
+            <div col-md-6>
+                <span>{{ project.id}} | {{ project.title }}</span>
+                <img width="550px" src="{{ project.image }}" alt="Project image">
+            </div>
+            <div class="col-md-6">
+                <h6>Description</h6>
+                <small>{{ project.description }}</small>
+                <br>
+                <small>{{ project.date_created}}</small>
+            </div>
+        {% else %}
+            <h1>Nothing to display</h1>
+        {% endif %}
+    </div>
+    <div class="row">
+        <a href="{% url 'view_all_projects' %}"> <button> View all projects </button></a> <!--to make the project return to the main page. the url is named in the urls.py-->
+
+        <a href="{% url 'update_project' project.id %}"><button>Update Project</button></a>
+
+        <a href="{% url 'delete' project.id %}"><button>Delete</button></a>
+    </div>
+</div>
+{% endblock %}

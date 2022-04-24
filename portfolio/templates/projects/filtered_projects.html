@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div class="container">
+    <h1>Filtered projects will be here</h1>
+    <br>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="filter">Enter search key here</label>
+        <input name="filter" type="text">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if projects %}
+        {% for project in projects %}
+            <divc class="col-md-10">
+                <div clas="row">
+                    <div class="card">
+                        <span>{{ project.id}} | {{ project.title }}</span>
+                    </div>
+                    <img src="{{ project.image }}" alt="Project Image" >
+                </div>
+                <br>
+                <small>{{ project.description }}</small>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h1>Nothing to display</h1>
+    {% endif %}
+</div>
+{% endblock %}

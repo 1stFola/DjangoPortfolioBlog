@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div class="container">
+<a style="text-decoration: none; color: green;" href="{% url 'view_all_projects' %}">
+    <h1>Projects</h1>
+</a>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{% url 'create_project' %}">
+                <button>Create Project</button>
+            </a>
+    </div>
+    <div class="col-md-6">
+        <form action="" method="post"> 
+            {% csrf_token %}
+            <input type="text" name="filter">
+            <button type="search" >Search</button>
+        </form>
+    </div>
+    <div class="row">
+        {% for project in projects %}  <!--for loop using ginger, to display-->
+        <div class="col-md-4 my-2">
+            <a style="text-decoration: none; color: black;" href="{{ project.id }}" >
+                <div class="card">
+                    <div class="">
+                        <span>{{ project.id }} | {{ project.title }}</span>
+                    </div>
+                    <img src="{{project.image}}" alt="Project Image"> 
+                    <small>{{ project.description | slice:":100" }}</small>
+                </div>
+            </a>
+        </div>
+        {% endfor %} <!--to end the for loop-->
+    </div> 
+</div>
+{% endblock %}
