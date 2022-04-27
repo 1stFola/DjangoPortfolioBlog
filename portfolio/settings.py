@@ -72,6 +72,8 @@ TEMPLATES = [
     },
 ]
 
+# pass_mangt
+
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 
